@@ -29,8 +29,9 @@ sap.ui.define([
                 const oData = {
                     players: [
                         { name: "Max", wins: 7, losses: 5 },
-                        { name: "Dennis", wins: 4, losses: 3 },
-                        { name: "Farouk", wins: 1, losses: 4 },
+                        { name: "Dennis", wins: 4, losses: 8 },
+                        { name: "Farouk", wins: 4, losses: 4 },
+                        { name: "Michael", wins: 5, losses: 3}
                     ]
                 };
                 const oModel = new JSONModel(oData);
