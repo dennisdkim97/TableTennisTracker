@@ -1,0 +1,108 @@
+{
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "tabletennistracker.tabletennistracker",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.11.4",
+      "toolsId": "00a21721-0264-4acb-b42a-98f287bec102"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.120.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "tabletennistracker.tabletennistracker.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "tabletennistracker.tabletennistracker.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+           "name": "Overview",
+           "pattern": "",
+           "target": "overview"
+        },
+        {
+           "name": "Leaderboard",
+           "pattern": "leaderboard",
+           "target": "leaderboard"
+        }
+     ],
+      "targets": {
+        "overview": {
+          "viewId": "Overview",
+          "viewName": "Overview"
+       },
+       "leaderboard": {
+          "viewId": "Leaderboard",
+          "viewName": "Leaderboard"
+       }
+      }
+    },
+    "rootView": {
+      "viewName": "tabletennistracker.tabletennistracker.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}

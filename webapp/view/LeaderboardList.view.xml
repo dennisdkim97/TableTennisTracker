@@ -1,0 +1,46 @@
+<mvc:XMLView 
+    controllerName="tabletennistracker.tabletennistracker.controller.Leaderboard"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" >
+        <Panel>
+            <headerToolbar>
+            <Toolbar>
+                <Title text="{i18n>leaderboardPageTitle}"/>
+                <ToolbarSpacer/>
+                <SearchField
+                    width="25%"
+                    search=".onFilterLeaderboard"/>
+            </Toolbar>
+            </headerToolbar>
+            <Table 
+                id="leaderboardList"
+                class="sapUiResponsiveMargin"
+                width="auto"
+                items="{playerModel>/players}">
+
+                <columns>
+                    <Column>
+                        <Text text="{i18n>leaderboardRanking}"></Text>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>playerName}"></Text>
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>leaderboardWinLoss}"></Text>
+                    </Column>
+                </columns>
+                <!-- Bind items to the players array in model -->
+                <items>
+                    <ColumnListItem
+                        type="Navigation"
+                        press=".onPlayerPress">
+                        <cells>
+                            <Text text="{path: 'playerModel>ranking'}"></Text>
+                            <Text text="{playerModel>name}"></Text>
+                            <Text text="{playerModel>wins} - {playerModel>losses}"></Text>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Panel>
+</mvc:XMLView>
