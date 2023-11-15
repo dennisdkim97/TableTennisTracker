@@ -1,11 +1,13 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/model/Filter",
+    "sap/ui/model/Filter/FilterOperator"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel) {
+    function (Controller, JSONModel, Filter, FilterOperator) {
         "use strict";
 
         return Controller.extend("tabletennistracker.tabletennistracker.controller.Leaderboard", {
@@ -34,7 +36,7 @@ sap.ui.define([
             this.getView().setModel(oSortedModel, "playerModel");
             },
 
-            onFilterInvoices(oEvent) {
+            onFilterLeaderboard(oEvent) {
                 const aFilter = [];
                 const sQuery = oEvent.getParameter("query");
                 if (sQuery) {
@@ -43,6 +45,7 @@ sap.ui.define([
 
                 const oTable = this.byId("leaderboardTable");
                 const oBinding = oTable.getBinding("items");
+                console.log("FilterCalled")
                 oBinding.filter(aFilter);
             }
         });
