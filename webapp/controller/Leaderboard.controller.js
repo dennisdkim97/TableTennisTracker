@@ -2,7 +2,7 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
-    "sap/ui/model/Filter/FilterOperator"
+    "sap/ui/model/FilterOperator"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -40,12 +40,10 @@ sap.ui.define([
                 const aFilter = [];
                 const sQuery = oEvent.getParameter("query");
                 if (sQuery) {
-                    aFilter.push(new FileSystemEntry("name", FilterOperator.Contains, sQuery))
+                    aFilter.push(new Filter("name", FilterOperator.Contains, sQuery))
                 }
-
-                const oTable = this.byId("leaderboardTable");
+                const oTable = this.byId("leaderboardList");
                 const oBinding = oTable.getBinding("items");
-                console.log("FilterCalled")
                 oBinding.filter(aFilter);
             }
         });
