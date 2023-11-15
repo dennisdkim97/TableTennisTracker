@@ -33,5 +33,17 @@ sap.ui.define([
             // Set the sorted model to the view
             this.getView().setModel(oSortedModel, "playerModel");
             },
+
+            onFilterInvoices(oEvent) {
+                const aFilter = [];
+                const sQuery = oEvent.getParameter("query");
+                if (sQuery) {
+                    aFilter.push(new FileSystemEntry("name", FilterOperator.Contains, sQuery))
+                }
+
+                const oTable = this.byId("leaderboardTable");
+                const oBinding = oTable.getBinding("items");
+                oBinding.filter(aFilter);
+            }
         });
     });
