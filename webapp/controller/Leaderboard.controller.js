@@ -13,29 +13,39 @@ sap.ui.define([
         return Controller.extend("tabletennistracker.tabletennistracker.controller.Leaderboard", {
             onInit: function () {
                 // Get the JSON model from the Component
-            const oComponent = this.getOwnerComponent();
-            const oModel = oComponent.getModel("playerModel");
+                const oComponent = this.getOwnerComponent();
+                const oModel = oComponent.getModel("playerModel");
 
-            // Get the players array and sort it based on wins
-            const aPlayers = oModel.getProperty("/players");
-            aPlayers.sort(function (a, b) {
-                return b.wins - a.wins; // Sort in descending order based on wins
-            });
+                // Get the players array and sort it based on wins
+                const aPlayers = oModel.getProperty("/players");
+                aPlayers.sort(function (a, b) {
+                    return b.wins - a.wins; // Sort in descending order based on wins
+                });
 
-            // Assign a ranking based on the sorted order
-            aPlayers.forEach(function (player, index) {
-                player.ranking = index + 1;
-            });
+                // Assign a ranking based on the sorted order
+                // Assign a win percentage to each player
+                aPlayers.forEach(function (player, index) {
+                    player.ranking = index + 1;
+                    const wins = player.wins;
+                    const losses = player.losses;
+                    if (wins + losses === 0){
+                        player.winPercentage =  "0.00%";
+                    } else {
+                        const winPercentage = (wins / (wins + losses)) * 100;
+                        player.winPercentage = winPercentage.toFixed(2) + '%';
+                    }
+                });
 
-            // Create a new JSON model with the sorted players
-            const oSortedModel = new JSONModel({
-                players: aPlayers
-            });
+                // Create a new JSON model with the sorted players
+                const oSortedModel = new JSONModel({
+                    players: aPlayers
+                });
 
-            // Set the sorted model to the view
-            this.getView().setModel(oSortedModel, "playerModel");
+                // Set the sorted model to the view
+                this.getView().setModel(oSortedModel, "playerModel");
             },
 
+            // Filters players based on player name in search query
             onFilterLeaderboard(oEvent) {
                 const aFilter = [];
                 const sQuery = oEvent.getParameter("query");

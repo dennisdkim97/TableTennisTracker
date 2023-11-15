@@ -4,8 +4,15 @@
     xmlns="sap.m" >
         <Panel>
             <headerToolbar>
-            <Toolbar>
+            <Toolbar
+                class="sapUiResponsiveMargin">
                 <Title text="{i18n>leaderboardPageTitle}"/>
+                <ToolbarSpacer/>
+                <!-- <Select 
+                    forceSelection="false"
+                    type="IconOnly"
+					icon="sap-icon://filter"
+                    ></Select> -->
                 <ToolbarSpacer/>
                 <SearchField
                     width="25%"
@@ -28,6 +35,9 @@
                     <Column>
                         <Text text="{i18n>leaderboardWinLoss}"></Text>
                     </Column>
+                    <Column>
+                        <Text text="{i18n>leaderboardWinPercentage}"></Text>
+                    </Column>
                 </columns>
                 <!-- Bind items to the players array in model -->
                 <items>
@@ -38,6 +48,7 @@
                             <Text text="{path: 'playerModel>ranking'}"></Text>
                             <Text text="{playerModel>name}"></Text>
                             <Text text="{playerModel>wins} - {playerModel>losses}"></Text>
+                            <Text text="{path: 'playerModel>winPercentage'}"></Text>
                         </cells>
                     </ColumnListItem>
                 </items>
